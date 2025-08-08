@@ -334,6 +334,82 @@
                 padding: 15px;
             }
         }
+        /* استایل بخش فیلترها */
+.filter-box {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.filter-title {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1.4rem;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.filter-group label i {
+    margin-left: 5px;
+    color: var(--secondary-color);
+}
+
+.form-select {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.form-select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.25rem rgba(24, 188, 156, 0.25);
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.form-check-input {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .filter-actions {
+        flex-direction: column;
+    }
+    
+    .filter-actions button {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -366,6 +442,126 @@
             </div>
         </div>
     </header>
+    <!-- بخش فیلترها -->
+<section id="filters" class="mb-5">
+    <div class="filter-box">
+        <h3 class="filter-title">فیلتر آگهی‌ها</h3>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="city"><i class="fas fa-map-marker-alt"></i> شهر/شهرستان</label>
+                    <select id="city" class="form-select">
+                        <option value="">همه شهرها</option>
+                        <option value="تهران">تهران</option>
+                        <option value="مشهد">مشهد</option>
+                        <option value="اصفهان">اصفهان</option>
+                        <option value="تبریز">تبریز</option>
+                        <option value="شیراز">شیراز</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="brand"><i class="fas fa-car"></i> برند خودرو</label>
+                    <select id="brand" class="form-select">
+                        <option value="">همه برندها</option>
+                        <option value="پراید">پراید</option>
+                        <option value="پژو">پژو</option>
+                        <option value="هیوندایی">هیوندایی</option>
+                        <option value="رنو">رنو</option>
+                        <option value="تویوتا">تویوتا</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="price"><i class="fas fa-tag"></i> محدوده قیمت</label>
+                    <select id="price" class="form-select">
+                        <option value="">همه قیمت‌ها</option>
+                        <option value="100">تا 100 میلیون</option>
+                        <option value="200">100 تا 200 میلیون</option>
+                        <option value="300">200 تا 300 میلیون</option>
+                        <option value="500">300 تا 500 میلیون</option>
+                        <option value="500+">بالای 500 میلیون</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="condition"><i class="fas fa-car-crash"></i> وضعیت خودرو</label>
+                    <select id="condition" class="form-select">
+                        <option value="">همه وضعیت‌ها</option>
+                        <option value="new">صفر کیلومتر</option>
+                        <option value="excellent">در حد نو</option>
+                        <option value="good">کارکرده سالم</option>
+                        <option value="accident">تصادفی</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="transmission"><i class="fas fa-cog"></i> گیربکس</label>
+                    <select id="transmission" class="form-select">
+                        <option value="">همه انواع</option>
+                        <option value="manual">دنده‌ای</option>
+                        <option value="automatic">اتوماتیک</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="fuel"><i class="fas fa-gas-pump"></i> سوخت</label>
+                    <select id="fuel" class="form-select">
+                        <option value="">همه انواع</option>
+                        <option value="gasoline">بنزین</option>
+                        <option value="hybrid">هیبرید</option>
+                        <option value="electric">الکتریکی</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label for="year"><i class="fas fa-calendar-alt"></i> سال ساخت</label>
+                    <select id="year" class="form-select">
+                        <option value="">همه سال‌ها</option>
+                        <option value="1402">1402</option>
+                        <option value="1401">1401</option>
+                        <option value="1400">1400</option>
+                        <option value="1399">1399</option>
+                        <option value="1398">1398</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="filter-group">
+                    <label><i class="fas fa-camera"></i> عکس</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="withPhoto">
+                        <label class="form-check-label" for="withPhoto">فقط آگهی‌های با عکس</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-actions mt-4">
+            <button id="applyFilters" class="btn btn-primary">
+                <i class="fas fa-filter"></i> اعمال فیلترها
+            </button>
+            <button id="resetFilters" class="btn btn-outline-secondary">
+                <i class="fas fa-times"></i> حذف فیلترها
+            </button>
+        </div>
+    </div>
+</section>
 
     <main class="container my-5">
         <!-- بخش آگهی‌ها -->
