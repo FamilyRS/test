@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آراموتورز | بازار آنلاین خودرو</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #18bc9c;
+            --dark-color: #1a252f;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Yekan', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .main-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .navbar {
+            padding: 1rem 0;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo-highlight {
+            color: var(--secondary-color);
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            margin-left: 1.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--secondary-color);
+        }
+
+        .navbar-nav .nav-link i {
+            margin-left: 5px;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title span {
+            display: inline-block;
+            padding: 0 1rem;
+            background-color: #f8f9fa;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            z-index: 0;
+        }
+
+        .car-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            border: none;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .car-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .car-card:hover .car-img {
+            transform: scale(1.1);
+        }
+
+        .car-body {
+            padding: 1.5rem;
+        }
+
+        .car-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .car-price {
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .car-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .car-details span {
+            display: flex;
+            align-items: center;
+        }
+
+        .car-details i {
+            margin-left: 5px;
+            color: var(--secondary-color);
+        }
+
+        .btn-details {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-details:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* استایل بخش‌های جدید تعاملی */
+        .interactive-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 30px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 220px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg) scale(0.95);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            padding: 25px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, var(--primary-color), #4a6491);
+            color: white;
+        }
+
+        .flip-card-front h3 {
+            font-size: 1.4rem;
+            margin-top: 15px;
+        }
+
+        .flip-card-front i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--secondary-color), #128f76);
+            color: white;
+            transform: rotateY(180deg);
+            padding: 20px;
+        }
+
+        .flip-card-back p {
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .flip-btn {
+            background-color: white;
+            color: var(--secondary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .flip-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .info-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .main-footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+
+            .interactive-sections {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر زیبا -->
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <span class="logo-text">آرام<span class="logo-highlight">موتورز</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-home"></i> خانه</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#iranian-cars"><i class="fas fa-car"></i> ماشین‌های ایرانی</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#foreign-cars"><i class="fas fa-car-side"></i> ماشین‌های خارجی</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about"><i class="fas fa-info-circle"></i> درباره ما</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-phone-alt"></i> تماس با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="hero-section">
+            <div class="container">
+                <h1>بهترین انتخاب را با آراموتورز تجربه کنید</h1>
+                <p>بازار آنلاین خرید و فروش خودرو با تضمین بهترین قیمت‌ها</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <!-- بخش آگهی‌ها -->
+        <section id="featured-cars">
+            <h2 class="section-title"><span>آگهی‌های ویژه</span></h2>
+            <div class="row" id="carList">
+                <!-- آگهی‌ها اینجا نمایش داده می‌شوند -->
+                <div class="col-md-4">
+                    <div class="car-card">
+                        <div class="car-img-container">
+                            <img src="https://mediablog.khodro45.com/image/2022/08/blog-1400-1325.webp" alt="پراید 111" class="car-img">
+                        </div>
+                        <div class="car-body">
+                            <h3 class="car-title">پراید 111</h3>
+                            <p class="car-price">150,000,000 تومان</p>
+                            <div class="car-details">
+                                <span><i class="fas fa-calendar-alt"></i> 1395</span>
+                                <span><i class="fas fa-tachometer-alt"></i> 45,000 کیلومتر</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-cog"></i> دنده‌ای</span>
+                                <span><i class="fas fa-gas-pump"></i> بنزین</span>
+                            </div>
+                            <a href="#" class="btn btn-details mt-3">مشاهده جزئیات</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="car-card">
+                        <div class="car-img-container">
+                            <img src="https://mediablog.khodro45.com/image/2021/08/blog-1400-427_copy.webp" alt="تیبا 2" class="car-img">
+                        </div>
+                        <div class="car-body">
+                            <h3 class="car-title">تیبا 2</h3>
+                            <p class="car-price">220,000,000 تومان</p>
+                            <div class="car-details">
+                                <span><i class="fas fa-calendar-alt"></i> 1398</span>
+                                <span><i class="fas fa-tachometer-alt"></i> 30,000 کیلومتر</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-cog"></i> دنده‌ای</span>
+                                <span><i class="fas fa-gas-pump"></i> بنزین</span>
+                            </div>
+                            <a href="#" class="btn btn-details mt-3">مشاهده جزئیات</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="car-card">
+                        <div class="car-img-container">
+                            <img src="https://z4car.com/wp-content/uploads/2018/03/dena-plus-turbo.jpg"alt="دنا پلاس" class="car-img">
+                        </div>
+                        <div class="car-body">
+                            <h3 class="car-title">دنا پلاس</h3>
+                            <p class="car-price">450,000,000 تومان</p>
+                            <div class="car-details">
+                                <span><i class="fas fa-calendar-alt"></i> 1400</span>
+                                <span><i class="fas fa-tachometer-alt"></i> 20,000 کیلومتر</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-cog"></i> اتوماتیک</span>
+                                <span><i class="fas fa-gas-pump"></i> بنزین</span>
+                            </div>
+                            <a href="#" class="btn btn-details mt-3">مشاهده جزئیات</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش جدید تعاملی -->
+        <section class="interactive-sections">
+            <div class="flip-card">
+                <div class="flip-card-inner flipped" style="transform: rotateY(0deg) scale(1);">
+                    <div class="flip-card-front">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>درباره ما</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>با بیش از 10 سال سابقه درخشان در زمینه خرید و فروش خودروهای ایرانی و خارجی</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner" style="transform: rotateY(0deg) scale(1);">
+                    <div class="flip-card-front">
+                        <i class="fas fa-car"></i>
+                        <h3>ماشین‌های ایرانی</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>نمایشگاه تخصصی خودروهای ایرانی با گارانتی معتبر و قیمت مناسب</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner" style="transform: rotateY(0deg) scale(1);">
+                    <div class="flip-card-front">
+                        <i class="fas fa-car-side"></i>
+                        <h3>ماشین‌های خارجی</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>مرجع تخصصی خودروهای خارجی با بهترین قیمت بازار و ضمانت اصالت</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner" style="transform: rotateY(0deg) scale(1);">
+                    <div class="flip-card-front">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>تماس با ما</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>پاسخگوی شما هستیم همه روزه از ساعت 9 صبح تا 9 شب</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش‌های اصلی دیگر -->
+        
+
+        
+
+        
+
+        <section id="contact" class="mt-5 mb-5">
+            <h2 class="section-title"><span>تماس با ما</span></h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="info-box">
+                        <h3>راه‌های ارتباطی</h3>
+                        <p><i class="fas fa-phone"></i> تلفن: 021-12345678</p>
+                        <p><i class="fas fa-envelope"></i> ایمیل: info@aramotors.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> آدرس: تهران، خیابان ولیعصر، پلاک 123</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>آراموتورز</h3>
+                    <p>بازار آنلاین خرید و فروش خودرو</p>
+                </div>
+                <div class="col-md-6 text-left">
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // اسکرول نرم برای لینک‌ها
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // افکت‌های تعاملی برای کارت‌های چرخشی
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg) scale(0.95)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.flip-card-inner').style.transform = 'rotateY(0deg) scale(1)';
+            });
+            
+            // برای دستگاه‌های لمسی
+            card.addEventListener('click', function() {
+                this.querySelector('.flip-card-inner').classList.toggle('flipped');
+            });
+        });
+    </script>
+
+</body>
+</html>
